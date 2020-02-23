@@ -68,10 +68,9 @@ def _evaluate(parse_results, context):
             parse_list = [arg]
             parse_list.extends(parse_results[2*i+1:2*i+3])
             arg = _evaluate(parse_list, context)
-
+            parse_results = parse_list
             # The final time loop runs, arg is unused
 
-    parse_results = parse_list
     assert len(parse_results) == 3
 
     # handle logical operators
