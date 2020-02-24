@@ -57,19 +57,19 @@ def _evaluate(parse_results, context):
         # return literal value
         return parse_results
 
+    assert len(parse_results) >= 3
+    
     # recursion
-    if len(parse_results) != 3:
-        arg = parse_results[0]
+
+    if len(parse_results) >= 3:
         condition_len = len(parse_results)
-        parse_list = []
+        parse_list = parse_results[0:3]
 
         # After the loop ends, a final evaluation is done
-        for i in range(int(condition_len/2-1)):
-            parse_list = [arg]
-            parse_list.extends(parse_results[2*i+1:2*i+3])
-            arg = _evaluate(parse_list, context)
-            
-        # The final time loop runs, arg is unused
+        for i in range(1,int(condition_len)-2,2):
+            parse_list = [_evaluate(parse_list, context)]
+            parse_list.extends(parse_results[i:i + 2])
+
         parse_results = parse_list
 
     assert len(parse_results) == 3
