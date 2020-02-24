@@ -66,7 +66,7 @@ def _evaluate(parse_results, context):
         parse_list = parse_results[0:3]
 
         # After the loop ends, a final evaluation is done
-        for i in range(1,int(condition_len)-2,2):
+        for i in range(1, int(condition_len)-2, 2):
             parse_list = [_evaluate(parse_list, context)]
             parse_list.extends(parse_results[i:i + 2])
 
